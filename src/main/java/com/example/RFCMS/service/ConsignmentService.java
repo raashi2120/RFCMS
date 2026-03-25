@@ -7,6 +7,8 @@ import java.time.LocalTime;
 
 import com.example.RFCMS.models.Consignment;
 import com.example.RFCMS.repository.ConsignmentRepository;
+import com.example.RFCMS.service.RailwayDijkstra;
+
 
 @Service
 public class ConsignmentService {
@@ -16,10 +18,15 @@ public class ConsignmentService {
 
     @Autowired
     private ConsignmentRepository consignmentRepository;
+
+    @Autowired
+    private RailwayDijkstra railwayDijkstra;
     
     public Consignment bookConsignment(Consignment c){
 
         
+        double totalDistance = railwayDijkstra.run(c.getSource(),c.getDestination());
+        c.setDistance(totalDistance);
 
         double FreightCharge = freightService.calculateFreight(c);
         c.setFreightCharge(FreightCharge);

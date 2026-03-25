@@ -94,7 +94,7 @@ public class RailwayDijkstra {
     // -----------------------------
     // MAIN LOGIC METHOD
     // -----------------------------
-    public void run(String start, String end) {
+    public double run(String start, String end) {
         Map<String, List<Edge>> graph = buildGraph();
 
         // ✅ ADD THIS LINE HERE
@@ -110,5 +110,8 @@ public class RailwayDijkstra {
             System.out.println("Shortest Distance: " + dist.get(end) + " km");
             System.out.println("Path: " + String.join(" -> ", path));
         }
+
+
+        return dist.get(end);
     }
 }

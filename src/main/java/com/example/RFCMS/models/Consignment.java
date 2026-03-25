@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+
 @Data
 @Document(collection = "consignments")
 public class Consignment {
@@ -32,15 +33,6 @@ public class Consignment {
     private float demurrageCharge;
     private double distance = 1400;
     
-    // source to destination computation logic
-    /*
-    
-    
-    
-    
-    
-    */
-
     public double getDistance(){
         return this.distance;
     }
@@ -59,5 +51,13 @@ public class Consignment {
 
     public void setStatus(String status){
         this.status = status; 
+    }
+
+    public String getSource(){
+        return this.source;
+    }
+
+    public String getDestination(){
+        return this.destination;
     }
 }

@@ -3,6 +3,7 @@ package com.example.RFCMS.service;
 
 import org.springframework.stereotype.Service;
 import com.example.RFCMS.models.Consignment;
+import com.example.RFCMS.service.RailwayDijkstra;
 
 
 @Service
@@ -17,7 +18,9 @@ public class FreightService {
         
         double weight = c.getWeight();
 
-        /* ADD SOURCE TO DESTINATION CHARGE BASED ON THE GRAPH DB*/ 
+        
+
+
         
         if ("HIGH".equals(c.getPriority())) {
             totalCost += prioritySurcharge;
