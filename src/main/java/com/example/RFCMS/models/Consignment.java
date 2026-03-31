@@ -1,11 +1,9 @@
 package com.example.RFCMS.models;
 
-import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import java.time.LocalDateTime;
 
-
-@Data
 @Document(collection = "consignments")
 public class Consignment {
 
@@ -14,50 +12,71 @@ public class Consignment {
 
     private String cargoDescription;
     private String cargoType;
-    private float weight;
+    private int weight;
     private String source;
     private String destination;
     private String priority;
-    private double FreightCharge; 
 
+    private double FreightCharge;
     private String status;
 
-    // relationships (REFERENCE)
-    private String userId;
-    private String wagonId;
+    // ✅ Proper timestamps
+    private LocalDateTime bookingTimestamp;
+    private LocalDateTime actualArrivalTimestamp; // initially null
+    private LocalDateTime pickupTimestamp;        // initially null
 
-    // tracking + billing
-    private String bookingTimestamp;
-    private String deliveryTimestamp;
-    private float delay;
-    private float demurrageCharge;
-    private double distance = 1400;
-    
-    public double getDistance(){
-        return this.distance;
-    }
+    private int delay;
+    private int demurrageCharge;
+    private double finalAmount;
 
-    public float getWeight(){
-        return this.weight;
-    }
+    private int distance;
 
-    public String getPrioty(){
-        return this.priority;
-    }
+    // ---------------- GETTERS & SETTERS ----------------
 
-    public void setFreight(double FreightCharge){
-        this.FreightCharge = FreightCharge; 
-    }
+    public String getId() { return id; }
 
-    public void setStatus(String status){
-        this.status = status; 
-    }
+    public String getCargoDescription() { return cargoDescription; }
+    public void setCargoDescription(String cargoDescription) { this.cargoDescription = cargoDescription; }
 
-    public String getSource(){
-        return this.source;
-    }
+    public String getCargoType() { return cargoType; }
+    public void setCargoType(String cargoType) { this.cargoType = cargoType; }
 
-    public String getDestination(){
-        return this.destination;
-    }
+    public int getWeight() { return weight; }
+    public void setWeight(int weight) { this.weight = weight; }
+
+    public String getSource() { return source; }
+    public void setSource(String source) { this.source = source; }
+
+    public String getDestination() { return destination; }
+    public void setDestination(String destination) { this.destination = destination; }
+
+    public String getPriority() { return priority; }
+    public void setPriority(String priority) { this.priority = priority; }
+
+    public double getFreightCharge() { return FreightCharge; }
+    public void setFreightCharge(double freightCharge) { FreightCharge = freightCharge; }
+
+    public String getStatus() { return status; }
+    public void setStatus(String status) { this.status = status; }
+
+    public LocalDateTime getBookingTimestamp() { return bookingTimestamp; }
+    public void setBookingTimestamp(LocalDateTime bookingTimestamp) { this.bookingTimestamp = bookingTimestamp; }
+
+    public LocalDateTime getActualArrivalTimestamp() { return actualArrivalTimestamp; }
+    public void setActualArrivalTimestamp(LocalDateTime actualArrivalTimestamp) { this.actualArrivalTimestamp = actualArrivalTimestamp; }
+
+    public LocalDateTime getPickupTimestamp() { return pickupTimestamp; }
+    public void setPickupTimestamp(LocalDateTime pickupTimestamp) { this.pickupTimestamp = pickupTimestamp; }
+
+    public int getDelay() { return delay; }
+    public void setDelay(int delay) { this.delay = delay; }
+
+    public int getDemurrageCharge() { return demurrageCharge; }
+    public void setDemurrageCharge(int demurrageCharge) { this.demurrageCharge = demurrageCharge; }
+
+    public double getFinalAmount() { return finalAmount; }
+    public void setFinalAmount(double finalAmount) { this.finalAmount = finalAmount; }
+
+    public int getDistance() { return distance; }
+    public void setDistance(int distance) { this.distance = distance; }
 }
